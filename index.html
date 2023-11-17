@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xplay.gg servers</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>xplay.gg servers</h1>
+</header>
+<main id='main'></main>
+<script defer>
+    (async function () {
+        let modes = []
+        await fetch('https://xplay.gg/api/play/getCurrentOnlineStatus', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => modes = data.GameModes.cs2)
+
+        for (const mode of modes) {
+            let h = document.createElement('h3')
+            h.innerText = mode.Slug
+            document.getElementById('main').appendChild(h)
+
+            let t = document.createElement('table')
+            let r = t.insertRow()
+
+            let th = document.createElement('th')
+            th.innerText = 'link'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'map'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'players on'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'players max'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'average faceit'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'country'
+            r.appendChild(th)
+
+            th = document.createElement('th')
+            th.innerText = 'tick rate'
+            r.appendChild(th)
+
+            document.getElementById('main').appendChild(t)
+
+            let servers = []
+            await fetch('https://xplay.gg/api/play/getServers', {
+                method: 'POST',
+                body: JSON.stringify({modeID: mode.GameModeID, showFullServers: true}),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(res => res.json())
+                .then(data => servers = data)
+
+            for (let server of servers) {
+                r = t.insertRow()
+
+                c = r.insertCell()
+                a = document.createElement('a')
+                a.innerText = server.IP + ":" + server.Port
+                a.href = "steam://connect/" + server.IP + ":" + server.Port
+                c.appendChild(a)
+
+                c = r.insertCell()
+                c.innerText = server.CurrentMap
+
+                c = r.insertCell()
+                c.innerText = server.Online
+
+                c = r.insertCell()
+                c.innerText = server.TotalSlots
+
+                c = r.insertCell()
+                c.innerText = server.AverageFaceItLvl
+
+                c = r.insertCell()
+                c.innerText = server.CountryCode
+
+                c = r.insertCell()
+                c.innerText = server.TickRate
+            }
+        }
+    })()
+</script>
+</body>
+</html>

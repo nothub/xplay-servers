@@ -1,0 +1,15 @@
+html {
+    font: 12pt/1.6 sans-serif;
+}
+
+table {
+    border: 1px solid;
+}
+
+td, th {
+    border: 0.1rem double #444;
+}
+
+tr:hover {
+    background-color: #DDD;
+}
