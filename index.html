@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>xplay.gg servers</title>
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
@@ -28,6 +28,7 @@
             document.getElementById('main').appendChild(h)
 
             let t = document.createElement('table')
+            t.className = 'table'
             let r = t.insertRow()
 
             let th = document.createElement('th')
@@ -100,6 +101,8 @@
                 c.innerText = server.TickRate
             }
         }
+
+        new window.simpleDatatables.DataTable("table")
     })()
 </script>
 </body>
