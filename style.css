@@ -38,3 +38,16 @@ tr:hover {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+#corner {
+    max-width: 15%;
+    min-width: 1%;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    filter: opacity(50%);
+}
+
+#corner:hover {
+    filter: opacity(85%);
+}
