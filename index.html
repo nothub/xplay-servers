@@ -20,11 +20,10 @@
         for (let text of [
             'link',
             'map',
-            'players on',
-            'players max',
-            'average faceit',
+            'players',
+            'faceit',
             'country',
-            'tick rate'
+            'tick'
         ]) {
             let th = document.createElement('th')
             th.innerText = text
@@ -41,8 +40,7 @@
         cell.appendChild(link)
         for (let text of [
             server.CurrentMap,
-            server.Online,
-            server.TotalSlots,
+            `${server.Online}/${server.TotalSlots}`,
             server.AverageFaceItLvl,
             server.CountryCode,
             server.TickRate

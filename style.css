@@ -1,15 +1,24 @@
 html {
-    font: 12pt/1.6 sans-serif;
+    font-family: sans-serif
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    font-weight: bold
 }
 
 table {
-    border: 1px solid;
+    border: 0.1rem solid
 }
 
 td, th {
     border: 0.1rem double #444;
+    padding: 0.1rem
 }
 
 tr:hover {
-    background-color: #DDD;
+    background-color: #DDD
 }
