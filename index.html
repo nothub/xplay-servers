@@ -11,7 +11,7 @@
 <body>
 <header>
     <h1>xplay.gg cs2 servers</h1>
-    <nav id='nav'></nav>
+    <nav class='flexing' id='nav'></nav>
 </header>
 <main id='main'></main>
 <script defer>
@@ -95,7 +95,10 @@
             for (let server of servers) {
                 addServer(t, server);
             }
+
             sorttable.makeSortable(t);
+
+            document.getElementById('main').appendChild(document.createElement('hr'))
         }
     })()
 </script>

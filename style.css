@@ -22,3 +22,9 @@ td, th {
 tr:hover {
     background-color: #DDD
 }
+
+.flexing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly
+}
