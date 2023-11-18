@@ -9,7 +9,9 @@ const sounds = [
 ]
 
 function playSound() {
-    new Audio(sounds[Math.floor(Math.random() * sounds.length)]).play();
+    let audio = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+    audio.volume = 0.33;
+    audio.play();
 }
 
 let doggo = document.createElement('img')
