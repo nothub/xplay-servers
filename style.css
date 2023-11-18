@@ -7,12 +7,22 @@ body {
     font-family: sans-serif;
 }
 
-a {
+a:active, a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover {
-    font-weight: bold;
+a:link {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #551A8B;
+    text-decoration: none;
+}
+
+a:hover, a:hover:hover, a:link:hover, a:visited:hover {
+    color: inherit;
 }
 
 table {
@@ -40,7 +50,7 @@ tr:hover {
 }
 
 #corner {
-    max-width: 15%;
+    max-width: 10%;
     min-width: 1%;
     position: fixed;
     bottom: 1rem;
