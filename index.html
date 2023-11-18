@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>xplay.gg servers</title>
+    <title>xplay.gg cs2 servers</title>
     <link href="style.css" rel="stylesheet">
-    <script src="sorttable.js"
+    <script crossorigin="anonymous"
             integrity="sha512-M73DiNgWyrIZDuM5GBQwdKPRvI2jFbDWEX64Iz2KftUXUqomQZKWwGEgxvruYFPUWJ/KKnWQhGE51p6Ey2AICA=="
-            crossorigin="anonymous"></script>
+            src="sorttable.js"></script>
 </head>
 <body>
 <header>
-    <h1>xplay.gg servers</h1>
+    <h1>xplay.gg cs2 servers</h1>
+    <nav id='nav'></nav>
 </header>
 <main id='main'></main>
 <script defer>
@@ -64,12 +65,19 @@
             .catch(err => console.log(`Failed to fetch modes; ${err}`))
 
         for (const mode of modes) {
-            let h = document.createElement('h3')
+            let h = document.createElement('h2')
             h.innerText = mode.Slug
             document.getElementById('main').appendChild(h)
 
+            let n = document.createElement('a')
+            n.innerText = mode.Slug
+            n.href = `#${mode.Slug}`
+            n.appendChild(document.createElement('br'))
+            document.getElementById('nav').appendChild(n)
+
             let t = document.createElement('table')
             t.className = 'sortable'
+            t.id = mode.Slug
             addHeader(t);
             document.getElementById('main').appendChild(t)
 
