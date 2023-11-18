@@ -31,7 +31,9 @@ function addServer(table, server) {
         server.TickRate
     ]) {
         let cell = row.insertCell()
-        cell.innerText = text
+        let p = document.createElement('p')
+        p.innerText = text
+        cell.appendChild(p)
     }
 }
 
