@@ -77,7 +77,14 @@ function newModeTable(slug) {
         link.innerText = `${server.IP}:${server.Port}`
         link.href = `steam://connect/${server.IP}:${server.Port}`
         cell.appendChild(link)
-        for (let text of [server.CurrentMap, server.Online, server.TotalSlots, server.AverageFaceItLvl, server.CountryCode, Math.round(server.TickRate)]) {
+        for (let text of [
+            server.CurrentMap,
+            server.Online,
+            server.TotalSlots,
+            (server.AverageFaceItLvl).toFixed(1),
+            server.CountryCode,
+            Math.round(server.TickRate)
+        ]) {
             let cell = row.insertCell()
             let p = document.createElement('p')
             p.innerText = text
