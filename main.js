@@ -40,6 +40,13 @@ function newModeTable(slug) {
 
 (async function () {
 
+    for (const country of countries.values()) {
+        let image = new Image()
+        image.alt = country.name
+        image.src = 'data:image/png;base64,' + country.flag
+        document.getElementById('flags').appendChild(image)
+    }
+
     let modeData = []
     await fetch('https://xplay.gg/api/play/getCurrentOnlineStatus', {
         method: 'GET', headers: {
