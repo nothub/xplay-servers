@@ -38,6 +38,15 @@ function newModeTable(slug) {
     return t
 }
 
+function updateBookmarkUrl(countries) {
+    let url = location.protocol + '//' + location.host + location.pathname
+    if (countries !== undefined) {
+        url = url + '?countries=' + countries.join(',')
+    }
+    document.getElementById('bookmark').href = url
+    document.getElementById('bookmark').textContent = url
+}
+
 function toggleCountryFilter(id) {
     for (const col of document.getElementsByClassName("country-col")) {
         if (col.firstChild.textContent === id) {
@@ -60,11 +69,12 @@ function toggleCountryFilter(id) {
             allowed.push(id)
         }
     }
-    document.getElementById('bookmark').textContent = location.protocol + '//' + location.host + location.pathname + '?countries=' + allowed.join(',')
+    updateBookmarkUrl(allowed)
 }
 
 (async function () {
 
+    let countryIds = []
     for (const [id, country] of countries.entries()) {
         let image = new Image()
         image.alt = country.name
@@ -73,7 +83,9 @@ function toggleCountryFilter(id) {
         image.id = `flag-${id}`
         image.hide = false
         document.getElementById('flags').appendChild(image)
+        countryIds.push(id)
     }
+    updateBookmarkUrl()
 
     let modeData = []
     await fetch('https://xplay.gg/api/play/getCurrentOnlineStatus', {
