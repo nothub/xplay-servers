@@ -40,10 +40,23 @@ function newModeTable(slug) {
 
 (async function () {
 
-    for (const country of countries.values()) {
+    for (const [id, country] of countries.entries()) {
         let image = new Image()
         image.alt = country.name
         image.src = 'data:image/png;base64,' + country.flag
+        image.onclick = ev => {
+            for (const col of document.getElementsByTagName("td")) {
+                if (!col.hasChildNodes()) continue
+                if (col.firstChild.textContent === id) {
+                    if (col.parentElement.style.display === 'none') {
+                        col.parentElement.style.display = 'table-row'
+                    } else {
+                        col.parentElement.style.display = 'none'
+                    }
+                }
+            }
+
+        }
         document.getElementById('flags').appendChild(image)
     }
 
