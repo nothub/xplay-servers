@@ -43,6 +43,10 @@ tr:hover {
     background-color: #DDD;
 }
 
+.country-col:hover {
+    background-color: #F00;
+}
+
 .flexing {
     display: flex;
     flex-wrap: wrap;
