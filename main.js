@@ -44,12 +44,23 @@ function toggleCountryFilter(id) {
             if (col.parentElement.style.display === 'none') {
                 col.parentElement.style.display = 'table-row'
                 document.getElementById(`flag-${id}`).style.opacity = 1.00
+                document.getElementById(`flag-${id}`).hide = false
             } else {
                 col.parentElement.style.display = 'none'
                 document.getElementById(`flag-${id}`).style.opacity = 0.25
+                document.getElementById(`flag-${id}`).hide = true
             }
         }
     }
+
+    // update bookmark url
+    let allowed = []
+    for (const id of countries.keys()) {
+        if (document.getElementById(`flag-${id}`).hide !== true) {
+            allowed.push(id)
+        }
+    }
+    document.getElementById('bookmark').textContent = location.protocol + '//' + location.host + location.pathname + '?countries=' + allowed.join(',')
 }
 
 (async function () {
@@ -60,6 +71,7 @@ function toggleCountryFilter(id) {
         image.src = 'data:image/png;base64,' + country.flag
         image.onclick = ev => toggleCountryFilter(id)
         image.id = `flag-${id}`
+        image.hide = false
         document.getElementById('flags').appendChild(image)
     }
 
@@ -130,6 +142,15 @@ function toggleCountryFilter(id) {
         sorttable.makeSortable(mode.Table);
         for (const cmd of mode.Cmds) {
             console.log(cmd.Command, "-", cmd.Description)
+        }
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("countries") != null) {
+        const allowed = searchParams.get("countries").split(",");
+        for (const id of countries.keys()) {
+            if (allowed.includes(id)) continue
+            toggleCountryFilter(id)
         }
     }
 
