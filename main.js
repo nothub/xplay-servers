@@ -43,8 +43,10 @@ function toggleCountryFilter(id) {
         if (col.firstChild.textContent === id) {
             if (col.parentElement.style.display === 'none') {
                 col.parentElement.style.display = 'table-row'
+                document.getElementById(`flag-${id}`).style.opacity = 1.00
             } else {
                 col.parentElement.style.display = 'none'
+                document.getElementById(`flag-${id}`).style.opacity = 0.25
             }
         }
     }
@@ -57,6 +59,7 @@ function toggleCountryFilter(id) {
         image.alt = country.name
         image.src = 'data:image/png;base64,' + country.flag
         image.onclick = ev => toggleCountryFilter(id)
+        image.id = `flag-${id}`
         document.getElementById('flags').appendChild(image)
     }
 
