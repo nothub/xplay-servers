@@ -38,25 +38,25 @@ function newModeTable(slug) {
     return t
 }
 
+function toggleCountryFilter(id) {
+    for (const col of document.getElementsByClassName("country-col")) {
+        if (col.firstChild.textContent === id) {
+            if (col.parentElement.style.display === 'none') {
+                col.parentElement.style.display = 'table-row'
+            } else {
+                col.parentElement.style.display = 'none'
+            }
+        }
+    }
+}
+
 (async function () {
 
     for (const [id, country] of countries.entries()) {
         let image = new Image()
         image.alt = country.name
         image.src = 'data:image/png;base64,' + country.flag
-        image.onclick = ev => {
-            for (const col of document.getElementsByTagName("td")) {
-                if (!col.hasChildNodes()) continue
-                if (col.firstChild.textContent === id) {
-                    if (col.parentElement.style.display === 'none') {
-                        col.parentElement.style.display = 'table-row'
-                    } else {
-                        col.parentElement.style.display = 'none'
-                    }
-                }
-            }
-
-        }
+        image.onclick = ev => toggleCountryFilter(id)
         document.getElementById('flags').appendChild(image)
     }
 
@@ -102,7 +102,6 @@ function newModeTable(slug) {
             server.Online,
             server.TotalSlots,
             (server.AverageFaceItLvl).toFixed(1),
-            server.CountryCode,
             Math.round(server.TickRate)
         ]) {
             let cell = row.insertCell()
@@ -110,6 +109,12 @@ function newModeTable(slug) {
             p.innerText = text
             cell.appendChild(p)
         }
+        let c = row.insertCell()
+        c.className = 'country-col'
+        c.onclick = ev => toggleCountryFilter(server.CountryCode)
+        let p = document.createElement('p')
+        p.innerText = server.CountryCode
+        c.appendChild(p)
     }
 
     for (let cmd of allData.commandsList) {
