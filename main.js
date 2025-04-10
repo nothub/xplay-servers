@@ -7,7 +7,6 @@ function addHeader(table) {
         'max',
         'faceit',
         'country',
-        'tick'
     ]) {
         let th = document.createElement('th')
         th.innerText = text
@@ -129,7 +128,6 @@ function toggleCountryFilter(id) {
             server.Online,
             server.TotalSlots,
             (server.AverageFaceItLvl).toFixed(1),
-            Math.round(server.TickRate)
         ]) {
             let cell = row.insertCell()
             let p = document.createElement('p')
