@@ -6,6 +6,7 @@ function addHeader(table) {
         'online',
         'max',
         'faceit',
+        'city',
         'country',
     ]) {
         let th = document.createElement('th')
@@ -128,6 +129,7 @@ function toggleCountryFilter(id) {
             server.Online,
             server.TotalSlots,
             (server.AverageFaceItLvl).toFixed(1),
+            server.City,
         ]) {
             let cell = row.insertCell()
             let p = document.createElement('p')
