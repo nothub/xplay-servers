@@ -43,6 +43,11 @@ tr:hover {
     background-color: #DDD;
 }
 
+th {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+}
+
 .flexing {
     display: flex;
     flex-wrap: wrap;

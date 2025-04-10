@@ -139,8 +139,10 @@ function toggleCountryFilter(id) {
         c.className = 'country-col'
         c.onclick = ev => toggleCountryFilter(server.CountryCode)
         c.style.backgroundImage = "url('data:image/png;base64," + countries.get(server.CountryCode) + "')"
-        c.style.backgroundSize = "contain"
+        c.style.backgroundSize = "cover"
+        c.style.minWidth = "35px"
         c.style.opacity = "0.4"
+        c.style.textAlign = "center"
         let p = document.createElement('p')
         p.innerText = server.CountryCode
         c.appendChild(p)
