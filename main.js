@@ -75,10 +75,9 @@ function toggleCountryFilter(id) {
 (async function () {
 
     let countryIds = []
-    for (const [id, country] of countries.entries()) {
+    for (const [id, flag] of countries.entries()) {
         let image = new Image()
-        image.alt = country.name
-        image.src = 'data:image/png;base64,' + country.flag
+        image.src = 'data:image/png;base64,' + flag
         image.onclick = ev => toggleCountryFilter(id)
         image.id = `flag-${id}`
         image.hide = false
